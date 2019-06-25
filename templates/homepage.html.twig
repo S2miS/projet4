@@ -1,0 +1,10 @@
+{% block body %}
+
+    <div class="container-fluid">
+        <section class="home-section" id="home">
+            <h1>Musée du LOUVRE</h1>
+            <button class="btn-order"><a href="{{ path('booking_form') }}">Billeterie</a></button>
+        </section>
+
+        {% include 'information.html.twig' %}
+{% endblock %}
