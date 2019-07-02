@@ -9,6 +9,9 @@
     {{ form_label(form.visitDay, 'Date de la visite') }}
     {{ form_widget(form.visitDay) }}
     {{ form_errors(form.visitDay) }}
+    {{ form_label(form.email, 'Email') }}
+    {{ form_widget(form.email) }}
+    {{ form_errors(form.email) }}
 {{ form_end(form) }}
 
 {% endblock %}

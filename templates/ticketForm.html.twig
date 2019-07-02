@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {% for ticket in form %}
+        {{ form_errors(ticket) }}
+        {{ form_widget(ticket) }}
+    {% endfor %}
+    {{ form_end(form) }}
+
+{% endblock %}

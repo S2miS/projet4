@@ -28,7 +28,9 @@ class BookingFormController extends AbstractController
             $em= $this->getDoctrine()->getManager();
             $em->persist($booking);
             $em->flush();
-            return $this->redirectToRoute('booking_form');
+            return $this->redirectToRoute('booking_form', [
+                'booking'=>$booking
+            ]);
         }
         return $this->render('bookingForm.html.twig', [
             'form'=>$form->createView()

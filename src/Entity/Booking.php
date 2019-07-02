@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,11 +26,14 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\GreaterThanOrEqual("today", message="Impossible de sélectionner un jour passé")
      */
     private $visitDay;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(message="Email invalide")
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $email;
 
