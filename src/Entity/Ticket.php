@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,11 +19,15 @@ class Ticket
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
+     * @Assert\Length(min="2", max="50", minMessage="Minimun 2 caractères", maxMessage="Maximum 50 caractères")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
+     * @Assert\Length(min="2", max="50", minMessage="Minimun 2 caractères", maxMessage="Maximum 50 caractères")
      */
     private $lastname;
 
