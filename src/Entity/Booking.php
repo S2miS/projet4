@@ -25,8 +25,9 @@ class Booking
     private $orderDate;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @Assert\GreaterThanOrEqual("today", message="Impossible de sélectionner un jour passé")
+     * @Assert\Date(message="Test")
      */
     private $visitDay;
 
@@ -39,6 +40,7 @@ class Booking
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $orderType;
 
@@ -54,6 +56,7 @@ class Booking
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $orderNumber;
 
@@ -64,7 +67,7 @@ class Booking
 
     public function __construct()
     {
-        $this->orderDate=new \DateTime();
+        $this->orderDate = new \DateTime();
         $this->tickets = new ArrayCollection();
     }
 
@@ -85,12 +88,12 @@ class Booking
         return $this;
     }
 
-    public function getVisitDay(): ?\DateTimeInterface
+    public function getVisitDay()
     {
         return $this->visitDay;
     }
 
-    public function setVisitDay(\DateTimeInterface $visitDay): self
+    public function setVisitDay($visitDay): self
     {
         $this->visitDay = $visitDay;
 

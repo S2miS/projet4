@@ -1,8 +1,104 @@
 h1 {
     font-family: 'Lora', serif;
+    color: white;
+
 }
 
 body {
     font-family: 'Merriweather Sans', sans-serif;
-    background-color: red;
+    background-color: #331107 !important;
+}
+
+/*------------------------------------------ Homepage ------------------------------------------*/
+
+.home-section {
+    background-image: url("../images/louvrehome.jpg");
+}
+
+.home-section h1{
+    font-size: 4em;
+}
+
+.container-fluid {
+    text-align: center;
+}
+
+#homepage-container {
+    padding: 0 !important;
+}
+
+.container-fluid .home-section {
+    padding-top: 5%;
+    text-align: center;
+}
+
+.btn-order {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding-right: 1%;
+    padding-left: 1%;
+    text-transform: uppercase;
+    border: 1px solid white;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 1);
+    transition: 0.5s;
+}
+
+.btn-order:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: black;
+    border: 1px solid black;
+}
+
+.btn-order a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.btn-order a {
+    color: black;
+    font-size: 1.8em;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-decoration: none;
+}
+
+.schedules-table {
+    padding-bottom: 5%;
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.section-prices-container {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+#pricesandschedules {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2%;
+    background-color: #222222;
+    color:white;
+}
+
+/*------------------------------------------ Booking ------------------------------------------*/
+
+form {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+form div {
+    padding: 2%;
+}
+
+form div label {
+    padding-right: 2%;
 }

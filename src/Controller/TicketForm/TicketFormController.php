@@ -30,6 +30,7 @@ class TicketFormController extends AbstractController
         ] );
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid()){
+            $handler->givePriceAndFlush($tickets, $booking);
             return $this->redirectToRoute('Récapitulatif');
         }
         return $this->render('ticketForm.html.twig', [

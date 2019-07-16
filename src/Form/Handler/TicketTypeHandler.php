@@ -10,9 +10,26 @@ namespace App\Form\Handler;
 
 use App\Entity\Booking;
 use App\Entity\Ticket;
+use App\Service\TicketPrice;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class TicketTypeHandler
 {
+    /**
+     * @var ObjectManager
+     */
+    private $objectManager;
+    /**
+     * @var TicketPrice
+     */
+    private $ticketPrice;
+
+    public function __construct(ObjectManager $objectManager, TicketPrice $ticketPrice) {
+
+        $this->objectManager = $objectManager;
+        $this->ticketPrice = $ticketPrice;
+    }
+
     public function nbTickets (Booking $booking) {
         $nb= $booking->getTicketNumber();
         $tickets= [];
@@ -20,5 +37,16 @@ class TicketTypeHandler
             $tickets[]= new Ticket();
         }
         return $tickets;
+    }
+
+    public function givePriceAndFlush ($ticket, Booking $booking) {
+        foreach ($ticket as $t){
+            dd($t);
+            $price=$this->ticketPrice->priceCheck($t, $booking);
+            $t->setTicketPrice($price);
+            $booking->addTicket($t);
+            $this->objectManager->persist($booking);
+        }
+        $this->objectManager->flush();
     }
 }

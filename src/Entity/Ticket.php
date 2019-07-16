@@ -33,11 +33,13 @@ class Ticket
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime(message="Veuillez renseigner votre date de naissance")
      */
     private $birthday;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Country(message="Veuillez renseigner votre pays")
      */
     private $country;
 

@@ -17,7 +17,7 @@ class TicketType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('birthday', BirthdayType::class, [
-                'years'=> range(date('Y'), date('Y')-50)
+                'years'=> range(date('Y'), date('Y')-100)
             ])
             ->add('country', CountryType::class)
             ->add('discount')
