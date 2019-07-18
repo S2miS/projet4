@@ -7,7 +7,9 @@
  */
 
 namespace App\Validator;
+
 use Symfony\Component\Validator\Constraint;
+
 /**
  * Class HolidayFrance
  * @package src\Validator

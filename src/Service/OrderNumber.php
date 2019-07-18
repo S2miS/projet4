@@ -8,7 +8,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\Booking;
 use Ramsey\Uuid\Uuid;
 

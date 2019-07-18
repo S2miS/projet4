@@ -11,6 +11,7 @@ namespace App\Validator;
 use App\Service\TicketPrice;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+
 class ClosedDayValidator extends ConstraintValidator
 {
     protected $ticketPrice;

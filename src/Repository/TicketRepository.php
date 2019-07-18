@@ -19,6 +19,23 @@ class TicketRepository extends ServiceEntityRepository
         parent::__construct($registry, Ticket::class);
     }
 
+    public function getTotalReservations($date) {
+        $total = 0;
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.dateVisite = :date')
+            ->setParameter(':date', $date)
+        ;
+        $qb->leftJoin('r.billets', 'b')
+            ->addSelect('b')
+            ->select('count(b)')
+        ;
+        $result = $qb->getQuery()->getResult();
+        if(!empty($result[0][1])) {
+            $total = $result[0][1];
+        }
+        return $total;
+    }
+
     // /**
     //  * @return Ticket[] Returns an array of Ticket objects
     //  */
