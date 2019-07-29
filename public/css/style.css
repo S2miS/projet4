@@ -9,6 +9,30 @@ body {
     background-color: #331107 !important;
 }
 
+
+/*------------------------------------------ Footer ------------------------------------------*/
+
+Footer {
+    margin-top: 10%;
+    padding: 2%;
+    display: flex !important;
+    justify-content: space-evenly;
+    background-color: black;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+Footer a {
+    text-decoration: none;
+    color: white;
+}
+
+Footer a:hover {
+    text-decoration: none;
+    color: white;
+}
+
 /*------------------------------------------ Homepage ------------------------------------------*/
 
 .home-section {
@@ -83,7 +107,7 @@ body {
     color:white;
 }
 
-/*------------------------------------------ Booking ------------------------------------------*/
+/*------------------------------------------ Form ------------------------------------------*/
 
 form {
     color: white;
@@ -91,8 +115,11 @@ form {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    padding-left: 25%;
-    padding-right: 25%;
+    padding-left: 40%;
+    padding-right: 40%;
+    margin-top: 3%;
+    background-color: #222222;
+
 }
 
 form div {
@@ -101,4 +128,42 @@ form div {
 
 form div label {
     padding-right: 2%;
+}
+
+/*------------------------------------------ Booking ------------------------------------------*/
+
+#bookingTitle {
+    text-align: center;
+}
+
+#tickets {
+    text-align: center;
+}
+
+
+/*------------------------------------------ Summary  ------------------------------------------*/
+
+#resumepage {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-left: 30%;
+    padding-right: 30%;
+    margin-top: 3%;
+    background-color: #222222;
+}
+
+#resumepage h2 {
+    padding-bottom: 10%;
+}
+
+
+#totalPrice {
+    margin-top: 5%;
+}
+
+#resInfo {
+    padding-top: 5%;
 }

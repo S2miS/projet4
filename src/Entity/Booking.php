@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator as AcmeAssert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,10 @@ class Booking
      * @ORM\Column(type="date")
      * @Assert\GreaterThanOrEqual("today", message="Impossible de sélectionner un jour passé")
      * @Assert\Date(message="Test")
+     * @AcmeAssert\Not01May
+     * @AcmeAssert\Not01Nov
+     * @AcmeAssert\Not25Dec
+     * @AcmeAssert\NotTuesday
      */
     private $visitDay;
 
@@ -40,7 +45,6 @@ class Booking
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank(message="Veuillez renseigner ce champ")
      */
     private $orderType;
 
@@ -61,7 +65,7 @@ class Booking
     private $orderNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="booking")
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="booking", cascade={"persist", "remove"})
      */
     private $tickets;
 

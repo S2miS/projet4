@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div id="resumepage">
+    <h2 id="titreRecap">Résumé de votre commande</h2>
+        <div id="resBooking">
+            <p>Jours de la visite : {{ booking.visitDay|date('d-m-y') }} </p>
+            <p>Type de billet :
+                {% if booking.orderType == true %}
+                    Journée entière
+                {% else %}
+                    Demi-journée
+                {% endif %}
+            </p>
+            <p>Nombre de billets : {{ booking.ticketNumber }} </p>
+        </div>
+
+        <table id="resInfo">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Prix du billet</th>
+                <th>Réduction</th>
+            </tr>
+            {% for ticket in booking.tickets %}
+            <tr>
+                <td>{{ ticket.firstName }}</td>
+                <td>{{ ticket.lastName }}</td>
+                <td>{{ ticket.birthday|date('d/m/Y') }}</td>
+                <td>{{ ticket.ticketPrice }} €</td>
+                <td>
+                    {% if ticket.discount == true %}
+                        Oui
+                    {% else %}
+                        Non
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+
+        {% endfor %}
+
+        <div id="totalPrice">
+            <p>Montant total de votre commande : {{ booking.orderPrice }} € </p>
+        </div>
+    </div>
+
+    /* Bouton paiement */
+
+{% endblock %}

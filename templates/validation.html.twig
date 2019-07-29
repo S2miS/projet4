@@ -1,0 +1,12 @@
+{% block body %}
+    {{ parent() }}
+
+    <div id="validation">
+        <h1>VOTRE ACHAT A BIEN ÉTÉ VALIDÉ</h1>
+        <p>Vos billets vont être envoyé à l'adresse mail renseignée</p>
+        <p> L'équipe du Louvre vous souhaite une agréable visite.<br />
+            A bientôt.
+        </p>
+        <a href="http://www.louvre.fr/" id="louvreHome"><p>Retour à la page d'accueil du site</p></a>
+    </div>
+{% endblock %}

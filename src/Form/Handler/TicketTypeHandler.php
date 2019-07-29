@@ -41,7 +41,6 @@ class TicketTypeHandler
 
     public function givePriceAndFlush ($ticket, Booking $booking) {
         foreach ($ticket as $t){
-            dd($t);
             $price=$this->ticketPrice->priceCheck($t, $booking);
             $t->setTicketPrice($price);
             $booking->addTicket($t);
