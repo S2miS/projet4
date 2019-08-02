@@ -133,9 +133,9 @@ class Booking
         return $this->orderPrice;
     }
 
-    public function setOrderPrice(?int $orderPrice): self
+    public function setOrderPrice(?int $ticketPrice): self
     {
-        $this->orderPrice = $orderPrice;
+        $this->orderPrice += $ticketPrice;
 
         return $this;
     }

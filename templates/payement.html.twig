@@ -1,19 +1,40 @@
 {% block body %}
-<form action="validation.html.twig" method="post" id="payment-form">
-    <div class="form-row">
-        <label for="card-element">
-            Carte de crédit
-        </label>
-        <div id="card-element">
-            <!-- A Stripe Element will be inserted here. -->
+    <form action="validation.html.twig" method="post" id="payment-form">
+        <div class="form-row">
+            <label for="card-element">
+
+            </label>
+            <div id="card-element">
+                <div id="cardName">
+                    <input data-stripe="name" class="form-control" type="text" autocomplete="off" id="card-name"
+                           required placeholder="Titulaire" name="cardName"/>
+                </div>
+
+
+                <div id="cardNumber">
+                    <input data-stripe="number" type="text"  autocomplete="off"
+                           class="form-control js-cc-number"
+                           id="card-number" required placeholder="Numéro de carte" name="cardNumber"/>
+                </div>
+
+                <div id="cardMonth">
+                    <input data-stripe="exp" type="text" size="4" autocomplete="off" class="form-control js-cc-exp"
+                           id="card-expiration" required="required" placeholder="mm/AA" name="cardMonth"/>
+                </div>
+
+                <div id="cardCvc">
+                    <input data-stripe="cvc" type="text" size="4" autocomplete="off" class="form-control js-cc-cvc"
+                           id="card-cvc" required="required" placeholder="CVC" name="cardCvc"/>
+                </div>
+            </div>
+            <!-- Used to display form errors. -->
+            <div id="card-errors" role="alert"></div>
         </div>
 
-        <!-- Used to display form errors. -->
-        <div id="card-errors" role="alert"></div>
-    </div>
-
-    <button>Payer</button>
-</form>
+        <button type="submit" id="payment" class="js-submit-button btn btn-lg btn-danger">
+            Payer la commande
+        </button>
+    </form>
 {% endblock %}
 
 {% block javascripts %}
@@ -37,7 +58,7 @@
         // Add an instance of the card Element into the `card-element` <div>.
         card.mount('#card-element');
 
-        card.addEventListener('change', function(event) {
+        card.addEventListener('change', function (event) {
             var displayError = document.getElementById('card-errors');
             if (event.error) {
                 displayError.textContent = event.error.message;
@@ -48,10 +69,10 @@
 
         // Create a token or display an error when the form is submitted.
         var form = document.getElementById('payment-form');
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            stripe.createToken(card).then(function(result) {
+            stripe.createToken(card).then(function (result) {
                 if (result.error) {
                     // Inform the customer that there was an error.
                     var errorElement = document.getElementById('card-errors');

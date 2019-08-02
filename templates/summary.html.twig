@@ -36,12 +36,18 @@
                     {% endif %}
                 </td>
             </tr>
-        </table>
 
         {% endfor %}
 
+        </table>
+
         <div id="totalPrice">
             <p>Montant total de votre commande : {{ booking.orderPrice }} € </p>
+        </div>
+
+        <div id="payementButton">
+            {{ include("payement.html.twig") }}
+            <br>
         </div>
     </div>
 

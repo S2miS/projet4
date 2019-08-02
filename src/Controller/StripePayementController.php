@@ -22,7 +22,7 @@ class StripePayementController extends AbstractController
 
         $token = $_POST['stripeToken'];
         $charge = \Stripe\Charge::create([
-            'amount' => 1000,
+            'amount' => 100,
             'currency' => 'eur',
             'description' => 'Achat billet',
             'source' => $token,
