@@ -20,6 +20,7 @@
                 <th>Prénom</th>
                 <th>Date de naissance</th>
                 <th>Prix du billet</th>
+                <th>Pays</th>
                 <th>Réduction</th>
             </tr>
             {% for ticket in booking.tickets %}
@@ -27,6 +28,7 @@
                 <td>{{ ticket.firstName }}</td>
                 <td>{{ ticket.lastName }}</td>
                 <td>{{ ticket.birthday|date('d/m/Y') }}</td>
+                <td>{{ ticket.country }}</td>
                 <td>{{ ticket.ticketPrice }} €</td>
                 <td>
                     {% if ticket.discount == true %}
@@ -46,11 +48,19 @@
         </div>
 
         <div id="payementButton">
-            {{ include("payement.html.twig") }}
-            <br>
+            <form method="post" id="payment-form">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_f7TozI5oQIxOGZ4bTRFtwGZC00oWFcl0zL"
+                        data-email="{{ booking.email }}"
+                        data-amount="{{ booking.orderPrice * 100 }}"
+                        data-name="Billeterie Louvre"
+                        data-description="Votre commande"
+                        data-locale="auto"
+                        data-currency="eur">
+                </script>
+            </form>
         </div>
     </div>
-
-    /* Bouton paiement */
 
 {% endblock %}

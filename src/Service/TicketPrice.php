@@ -11,22 +11,36 @@ namespace App\Service;
 use App\Entity\Price;
 use App\Entity\Ticket;
 use App\Entity\Booking;
+use App\Repository\PriceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-class TicketPrice
-{
+class TicketPrice{
+
+
     /**
-     * @var EntityManagerInterface
+     * @var PriceRepository
      */
-    private $em;
+    private $priceRepository;
 
-    public function __construct(EntityManagerInterface $em){
+    public function __construct(PriceRepository $priceRepository){
 
-        $this->em = $em;
+
+        $this->priceRepository = $priceRepository;
     }
+
+
+    /**
+     * @param Ticket $ticket
+     * @param Booking $booking
+     * @return float|int
+     *
+     *
+     * TODO   voir comment virer le parametre $booking de cette methode
+     */
     public function priceCheck(Ticket $ticket, Booking $booking) {
-        $prices= $this->em->getRepository(Price::class)->findPrices();
-        $age= $ticket->getBirthday()->diff(new \DateTime())->y;
+        $prices= $this->priceRepository->findPrices();
+
+        $age= $ticket->getBirthday()->diff($booking->getVisitDay())->y;
         $discount= $ticket->getDiscount();
         $ticketType= $booking->getOrderType();
         $price=0;

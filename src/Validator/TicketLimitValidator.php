@@ -8,24 +8,35 @@
 
 namespace App\Validator;
 
+use App\Entity\Booking;
+use App\Repository\TicketRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 class TicketLimitValidator extends ConstraintValidator
 {
+
     /**
-     * @var EntityManagerInterface
+     * @var TicketRepository
      */
-    protected $em;
-    public function __construct(EntityManagerInterface $em)
+    private $ticketRepository;
+
+    public function __construct(TicketRepository $ticketRepository)
     {
-        $this->em = $em;
+
+        $this->ticketRepository = $ticketRepository;
     }
     public function validate($value, Constraint $constraint)
     {
-        $maxTicket = $this->em->getRepository('TicketRepository')->getTotalReservations($value);
-        if ($maxTicket >= 1000)
+
+        if(!$value instanceof Booking){
+            throw new ConstraintDefinitionException();
+        }
+
+        $maxTicket = $this->ticketRepository->getTotalReservations($value->getVisitDay());
+
+        if ($maxTicket + $value->getTicketNumber() > Booking::MAX_TICKET_PER_DAY)
         {
             $this->context
                 ->buildViolation($constraint->messageMaxTicket)

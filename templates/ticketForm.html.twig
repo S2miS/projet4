@@ -3,13 +3,15 @@
     <div id="tickets">
         <h1>Vos billets</h1>
     </div>
+    <div id="ticketsForm" class="ticketsForm">
     {{ form_start(form) }}
     {{ form_errors(form) }}
     {% for ticket in form %}
         {{ form_errors(ticket) }}
         {{ form_widget(ticket) }}
     {% endfor %}
-    <button type="submit">Valider</button>
+    </div>
+    <button type="submit" id="ticketSubmit">Valider</button>
     {{ form_end(form) }}
 
 {% endblock %}

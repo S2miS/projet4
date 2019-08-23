@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Ticket;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,13 +17,14 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
+            ->add('firstname', TextType::class, array('label'=>'Prénom'))
+            ->add('lastname', TextType::class, array('label'=>'Nom'))
             ->add('birthday', BirthdayType::class, [
-                'years'=> range(date('Y'), date('Y')-100)
+                'years'=> range(date('Y'), date('Y')-100),
+                'label'=>'Date de naissance'
             ])
-            ->add('country', CountryType::class)
-            ->add('discount')
+            ->add('country', CountryType::class, array('label'=>'Pays'))
+            ->add('discount', CheckboxType::class, array('label'=>'Réduction', 'required'=>false))
         ;
     }
     public function configureOptions(OptionsResolver $resolver)

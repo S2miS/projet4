@@ -44,9 +44,7 @@ class TicketTypeHandler
             $price=$this->ticketPrice->priceCheck($t, $booking);
             $t->setTicketPrice($price);
             $booking->addTicket($t);
-            $booking->setOrderPrice($price);
-            $this->objectManager->persist($booking);
+            $booking->incrementOrderPrice($price);
         }
-        $this->objectManager->flush();
     }
 }

@@ -16,14 +16,16 @@ use App\Form\TicketType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TicketFormController extends AbstractController
 {
     /**
-     * @Route("/vos-tickets/{id}", name="ticket_form", methods={"GET", "POST"})
+     * @Route("/vos-tickets", name="ticket_form", methods={"GET", "POST"})
      */
-    public function ticket(Request $request, Booking $booking, TicketTypeHandler $handler){
+    public function ticket(Request $request, TicketTypeHandler $handler, SessionInterface $session){
+        $booking = $session->get('booking');
         $tickets= $handler->nbTickets($booking);
         $form= $this->createForm( CollectionType::class, $tickets, [
             'entry_type'=>TicketType::class
@@ -31,7 +33,8 @@ class TicketFormController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid()){
             $handler->givePriceAndFlush($tickets, $booking);
-            return $this->redirectToRoute('recapitulatif', array('id'=>$booking->getId()));
+            $session->set('ticket', $tickets);
+            return $this->redirectToRoute('recapitulatif');
         }
         return $this->render('ticketForm.html.twig', [
             'form'=>$form->createView()

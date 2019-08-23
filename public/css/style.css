@@ -7,6 +7,10 @@ h1 {
 body {
     font-family: 'Merriweather Sans', sans-serif;
     background-color: #331107 !important;
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -138,6 +142,22 @@ form div label {
 
 #tickets {
     text-align: center;
+}
+
+/*------------------------------------------ Tickets  ------------------------------------------*/
+
+#ticketsForm form > div {
+    border: 2px solid black;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#ticketSubmit {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    margin-left: 40%;
+    margin-right: 40%;
 }
 
 

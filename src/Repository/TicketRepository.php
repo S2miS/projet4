@@ -20,48 +20,14 @@ class TicketRepository extends ServiceEntityRepository
     }
 
     public function getTotalReservations($date) {
-        $total = 0;
-        $qb = $this->createQueryBuilder('r')
-            ->where('r.dateVisite = :date')
+        $qb = $this->createQueryBuilder('t')
+            ->select('count(t)')
+            ->innerJoin('t.booking', 'b')
+            ->where('b.visitDay = :date')
             ->setParameter(':date', $date)
         ;
-        $qb->leftJoin('r.billets', 'b')
-            ->addSelect('b')
-            ->select('count(b)')
-        ;
-        $result = $qb->getQuery()->getResult();
-        if(!empty($result[0][1])) {
-            $total = $result[0][1];
-        }
-        return $total;
+        return  $qb->getQuery()->getSingleScalarResult() ?? 0;
     }
 
-    // /**
-    //  * @return Ticket[] Returns an array of Ticket objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Ticket
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

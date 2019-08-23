@@ -19,15 +19,9 @@ class BookingType extends AbstractType
     {
         $builder
             ->add('visitDay', DateType::class, [
-                'format'=>'dd-MM-yyyy',
+                //'format'=>'dd-MM-yyyy',
+                'widget' => 'single_text'
             ])
-            /*->add('visitDay', DateType::class, [
-                'widget'=>'single_text',
-                'format'=>'dd-MM-yyyy',
-                'attr'=>['class'=>'datepicker'],
-                'html5'=>false,
-                'model_timezone'=>'Europe/Paris'
-            ])*/
             ->add('email', EmailType::class)
             ->add('orderType', ChoiceType::class, [
                 'choices'=> [

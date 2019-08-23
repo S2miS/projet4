@@ -17,4 +17,11 @@ use Symfony\Component\Validator\Constraint;
 class TicketLimit extends Constraint
 {
     public $messageMaxTicket = 'Il n\'y a plus de place disponible à cette date';
+
+    public function getTargets()
+    {
+        return parent::CLASS_CONSTRAINT;
+    }
+
+
 }

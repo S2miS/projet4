@@ -10,9 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
+ * @AcmeAssert\TicketLimit()
+ *
  */
 class Booking
 {
+    const MAX_TICKET_PER_DAY = 1000;
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -33,6 +38,8 @@ class Booking
      * @AcmeAssert\Not01Nov
      * @AcmeAssert\Not25Dec
      * @AcmeAssert\NotTuesday
+     * @AcmeAssert\NotSunday
+     * @AcmeAssert\NotHoliday
      */
     private $visitDay;
 
@@ -46,7 +53,7 @@ class Booking
     /**
      * @ORM\Column(type="boolean")
      */
-    private $orderType;
+    private $orderType = true;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -133,7 +140,14 @@ class Booking
         return $this->orderPrice;
     }
 
-    public function setOrderPrice(?int $ticketPrice): self
+    public function setOrderPrice(?int $price): self
+    {
+        $this->orderPrice = $price;
+
+        return $this;
+    }
+
+    public function incrementOrderPrice(?int $ticketPrice): self
     {
         $this->orderPrice += $ticketPrice;
 
