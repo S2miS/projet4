@@ -25,8 +25,8 @@ class BookingType extends AbstractType
             ->add('email', EmailType::class)
             ->add('orderType', ChoiceType::class, [
                 'choices'=> [
-                    'Journée'=>true,
-                    'Demi-journée'=>false
+                    'Journée'=>Booking::TYPE_FULL_DAY,
+                    'Demi-journée'=>Booking::TYPE_HALF_DAY
                 ],
                 'multiple'=>false
             ])

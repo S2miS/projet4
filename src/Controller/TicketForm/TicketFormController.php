@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TicketFormController extends AbstractController
@@ -26,14 +27,17 @@ class TicketFormController extends AbstractController
      */
     public function ticket(Request $request, TicketTypeHandler $handler, SessionInterface $session){
         $booking = $session->get('booking');
-        $tickets= $handler->nbTickets($booking);
-        $form= $this->createForm( CollectionType::class, $tickets, [
+
+        if(!$booking){
+            throw new NotFoundHttpException();
+        }
+
+        $form= $this->createForm( CollectionType::class, $booking->getTickets(), [
             'entry_type'=>TicketType::class
         ] );
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid()){
-            $handler->givePriceAndFlush($tickets, $booking);
-            $session->set('ticket', $tickets);
+            $handler->computePrice($booking);
             return $this->redirectToRoute('recapitulatif');
         }
         return $this->render('ticketForm.html.twig', [

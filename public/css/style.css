@@ -187,3 +187,14 @@ form div label {
 #resInfo {
     padding-top: 5%;
 }
+
+/*------------------------------------------ Validation  ------------------------------------------*/
+
+#validation {
+    color: white;
+    background-color: #222222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}

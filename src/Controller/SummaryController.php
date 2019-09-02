@@ -8,22 +8,27 @@
 
 namespace App\Controller;
 
-use App\Entity\Booking;
-use App\Entity\Ticket;
+
+use App\Service\OrderNumber;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
+
 
 class SummaryController extends AbstractController
 {
     /**
      * @Route("/recapitulatif", name="recapitulatif", methods={"GET", "POST"})
      */
-    public function summary(SessionInterface $session, Request $request, \Swift_Mailer $mailer)
+    public function summary(SessionInterface $session, Request $request, \Swift_Mailer $mailer, OrderNumber $orderNumber)
     {
         $booking = $session->get('booking');
+
+        if(!$booking){
+            throw new NotFoundHttpException();
+        }
 
         if ($request->isMethod("POST")) {
             \Stripe\Stripe::setApiKey('sk_test_GKohdNqZdj89Jwas3H9gVz7z00HPQmjdqZ');
@@ -39,6 +44,8 @@ class SummaryController extends AbstractController
                     "description" => "Paiement Stripe - Musée du Louvre"
                 ));
                 $this->addFlash("success", "Paiement effectué");
+
+                $orderNumber->defineOrderNumber($booking);
 
                 // Enregistrement en BDD
                 $entityManager = $this->getDoctrine()->getManager();
@@ -56,7 +63,7 @@ class SummaryController extends AbstractController
                 $message = (new \Swift_Message('Confirmation de paiement de vos billets pour le musée du Louvre'))
                     ->setFrom(['thegeekization@gmail.com' => 'Musée du Louvre'])
                     ->setTo(['simbox94@yahoo.fr' => 'Client'])
-                    ->setBody('Nous confirmons l\'achat de vos billets pour le musée du Louvre, bonne visite.' );
+                    ->setBody($this->render('email.html.twig',array('booking' => $booking)), 'text/html');
 
                 // Send the message
                 $result = $mailer->send($message);

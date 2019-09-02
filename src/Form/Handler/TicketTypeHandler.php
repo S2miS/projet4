@@ -15,18 +15,15 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class TicketTypeHandler
 {
-    /**
-     * @var ObjectManager
-     */
-    private $objectManager;
+
     /**
      * @var TicketPrice
      */
     private $ticketPrice;
 
-    public function __construct(ObjectManager $objectManager, TicketPrice $ticketPrice) {
+    public function __construct(TicketPrice $ticketPrice) {
 
-        $this->objectManager = $objectManager;
+
         $this->ticketPrice = $ticketPrice;
     }
 
@@ -39,11 +36,11 @@ class TicketTypeHandler
         return $tickets;
     }
 
-    public function givePriceAndFlush ($ticket, Booking $booking) {
-        foreach ($ticket as $t){
-            $price=$this->ticketPrice->priceCheck($t, $booking);
-            $t->setTicketPrice($price);
-            $booking->addTicket($t);
+    public function computePrice (Booking $booking) {
+        foreach ($booking->getTickets() as $ticket){
+            $price=$this->ticketPrice->priceCheck($ticket);
+            $ticket->setTicketPrice($price);
+            $booking->addTicket($ticket);
             $booking->incrementOrderPrice($price);
         }
     }

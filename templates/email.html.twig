@@ -1,0 +1,28 @@
+Nous confirmons l'achat de vos billets pour le musée du Louvre, bonne visite.
+
+    <table id="ticketingInfo">
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Prix du billet</th>
+        <th>Pays</th>
+        <th>Réduction</th>
+    </tr>
+    {% for ticket in booking.tickets %}
+    <tr>
+        <td>{{ ticket.firstName }}</td>
+        <td>{{ ticket.lastName }}</td>
+        <td>{{ ticket.birthday|date('d/m/Y') }}</td>
+        <td>{{ ticket.ticketPrice }} €</td>
+        <td>{{ ticket.country }}</td>
+        <td>
+            {% if ticket.discount == true %}
+                Oui
+            {% else %}
+                Non
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </table>

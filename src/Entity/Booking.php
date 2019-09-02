@@ -11,11 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
  * @AcmeAssert\TicketLimit()
+ * @AcmeAssert\NotAfter14H()
  *
  */
 class Booking
 {
     const MAX_TICKET_PER_DAY = 1000;
+    const TYPE_FULL_DAY = true;
+    const TYPE_HALF_DAY = false;
 
 
     /**
@@ -67,7 +70,6 @@ class Booking
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $orderNumber;
 

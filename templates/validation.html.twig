@@ -1,9 +1,8 @@
+{% extends 'base.html.twig' %}
 {% block body %}
-    {{ parent() }}
-
     <div id="validation">
-        <h1>VOTRE ACHAT A BIEN ÉTÉ VALIDÉ  :   NUMERO DE COMMANDE </h1>
-        <p>Vos billets vont être envoyé à l'adresse mail renseignée :  XXXXXX</p>
+        <h1>VOTRE ACHAT A BIEN ÉTÉ VALIDÉ  :   NUMERO DE COMMANDE = <br>N° {{ booking.orderNumber }}</br></h1>
+        <p>Vos billets vont être envoyé à l'adresse mail renseignée :  {{ booking.email }}</p>
         <p> L'équipe du Louvre vous souhaite une agréable visite.<br />
             A bientôt.
         </p>

@@ -28,8 +28,8 @@
                 <td>{{ ticket.firstName }}</td>
                 <td>{{ ticket.lastName }}</td>
                 <td>{{ ticket.birthday|date('d/m/Y') }}</td>
-                <td>{{ ticket.country }}</td>
                 <td>{{ ticket.ticketPrice }} €</td>
+                <td>{{ ticket.country }}</td>
                 <td>
                     {% if ticket.discount == true %}
                         Oui
