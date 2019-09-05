@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div id="validation">
-        <h1>VOTRE ACHAT A BIEN ÉTÉ VALIDÉ  :   NUMERO DE COMMANDE = <br>N° {{ booking.orderNumber }}</br></h1>
+        <h1>VOTRE ACHAT A BIEN ÉTÉ VALIDÉ<br></h1>
+        <div id="validationText">
         <p>Vos billets vont être envoyé à l'adresse mail renseignée :  {{ booking.email }}</p>
+        <p>Votre NUMERO DE COMMANDE = N° {{ booking.orderNumber }}</p>
         <p> L'équipe du Louvre vous souhaite une agréable visite.<br />
             A bientôt.
         </p>
         <a href="http://www.louvre.fr/" id="louvreHome"><p>Retour à la page d'accueil du site</p></a>
+        </div>
     </div>
 {% endblock %}
