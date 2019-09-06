@@ -27,11 +27,11 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     public function urlProvider()
     {
         return [
-            ['/', 200],
-            ['/votre-commande', 200],
-            ['/recapitulatif', 404],
-            ['/vos-tickets', 404],
-            ['/validation', 404],
+            ['/', 200], /*Page Ok*/
+            ['/votre-commande', 200], /*Page Ok*/
+            ['/recapitulatif', 404], /*Page non trouvé */
+            ['/vos-tickets', 404], /*Page non trouvé */
+            ['/validation', 404], /*Page non trouvé */
         ];
     }
 }

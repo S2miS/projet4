@@ -40,7 +40,6 @@ class TicketPrice
      * @return float|int
      *
      *
-     * TODO   voir comment virer le parametre $booking de cette methode
      */
     public function priceCheck(Ticket $ticket)
     {
@@ -66,7 +65,7 @@ class TicketPrice
         if($discount === true && $price > $prices->getDiscount()) {
             $price = $prices->getDiscount();
         }
-        if ($ticketType === false) {
+        if ($ticketType === Booking::TYPE_HALF_DAY) {
             $price = $price * Price::REDUCE_COEEF;
         }
         return $price;

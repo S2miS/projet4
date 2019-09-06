@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Booking;
 use App\Service\OrderNumber;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +25,7 @@ class SummaryController extends AbstractController
      */
     public function summary(SessionInterface $session, Request $request, \Swift_Mailer $mailer, OrderNumber $orderNumber)
     {
+        /** @var Booking $booking */
         $booking = $session->get('booking');
 
         if(!$booking){
@@ -60,10 +62,13 @@ class SummaryController extends AbstractController
                 // TODO faire le template du mail de confirmation
 
                 // Create a message
-                $message = (new \Swift_Message('Confirmation de paiement de vos billets pour le musée du Louvre'))
-                    ->setFrom(['thegeekization@gmail.com' => 'Musée du Louvre'])
-                    ->setTo(['simbox94@yahoo.fr' => 'Client'])
-                    ->setBody($this->render('email.html.twig',array('booking' => $booking)), 'text/html');
+                $message = (new \Swift_Message('Confirmation de paiement de vos billets pour le musée du Louvre'));
+
+                $cid = $message->embed(\Swift_Image::fromPath("images/louvrelogo.png"));
+                $message
+                    ->setFrom(['no-reply@louvre.fr' => 'Musée du Louvre'])
+                    ->setTo([$booking->getEmail() => 'Client'])
+                    ->setBody($this->renderView('email.html.twig',array('booking' => $booking, 'cid' => $cid)), 'text/html');
 
                 // Send the message
                 $result = $mailer->send($message);

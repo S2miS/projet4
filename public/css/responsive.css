@@ -1,0 +1,50 @@
+/*------------------------------------------------------------------ Responsive ------------------------------------------------------------------*/
+/* For mobile phones: */
+@media all and (max-width: 600px) {
+
+    footer {
+        text-align: center;
+    }
+
+    #pricesandschedules {
+        flex-direction: column;
+    }
+
+    #prices {
+        margin-top: 10%;
+    }
+
+    form {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    select {
+         width: 100%;
+         justify-content: center;
+    }
+
+    #resumepage {
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    #validation {
+        margin-top: 15%;
+    }
+
+    #validationText {
+        margin-top: 15%;
+    }
+
+    .alert {
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 5%;
+    }
+
+    th, td {
+        border: 1px solid white;
+    }
+
+}
