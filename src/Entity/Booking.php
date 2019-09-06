@@ -69,7 +69,7 @@ class Booking
     private $ticketNumber;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $orderNumber;
 

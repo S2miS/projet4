@@ -6,12 +6,14 @@
     <div id="ticketsForm" class="ticketsForm">
     {{ form_start(form) }}
     {{ form_errors(form) }}
-    {% for ticket in form %}
+    {% for ticket in form.tickets %}
+        <div id="ticketNumber">Billet n° {{ loop.index }}</div>
         {{ form_errors(ticket) }}
         {{ form_widget(ticket) }}
     {% endfor %}
+        <button type="submit" id="ticketSubmit">Valider</button>
     </div>
-    <button type="submit" id="ticketSubmit">Valider</button>
+
     {{ form_end(form) }}
 
 {% endblock %}

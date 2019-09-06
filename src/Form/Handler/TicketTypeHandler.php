@@ -28,12 +28,9 @@ class TicketTypeHandler
     }
 
     public function nbTickets (Booking $booking) {
-        $nb= $booking->getTicketNumber();
-        $tickets= [];
-        for ($i = 1; $i <= $nb; $i++){
-            $tickets[]= new Ticket();
+        for ($i = 1; $i <= $booking->getTicketNumber(); $i++){
+            $booking->addTicket(new Ticket());
         }
-        return $tickets;
     }
 
     public function computePrice (Booking $booking) {

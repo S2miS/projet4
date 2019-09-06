@@ -10,9 +10,9 @@ namespace App\Validator;
 
 use App\Entity\Booking;
 use App\Repository\TicketRepository;
+use http\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 class TicketLimitValidator extends ConstraintValidator
 {
@@ -31,7 +31,7 @@ class TicketLimitValidator extends ConstraintValidator
     {
 
         if(!$value instanceof Booking){
-            throw new ConstraintDefinitionException();
+            throw new InvalidArgumentException();
         }
 
         $maxTicket = $this->ticketRepository->getTotalReservations($value->getVisitDay());

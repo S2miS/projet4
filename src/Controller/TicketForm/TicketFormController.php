@@ -11,6 +11,7 @@ namespace App\Controller\TicketForm;
 
 use App\Entity\Booking;
 use App\Entity\Ticket;
+use App\Form\BookingTicketsType;
 use App\Form\Handler\TicketTypeHandler;
 use App\Form\TicketType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -32,9 +33,7 @@ class TicketFormController extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        $form= $this->createForm( CollectionType::class, $booking->getTickets(), [
-            'entry_type'=>TicketType::class
-        ] );
+        $form= $this->createForm( BookingTicketsType::class, $booking);
         $form->handleRequest($request);
         if ($form->isSubmitted()&& $form->isValid()){
             $handler->computePrice($booking);
