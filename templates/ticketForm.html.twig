@@ -7,7 +7,7 @@
     {{ form_start(form) }}
     {{ form_errors(form) }}
     {% for ticket in form.tickets %}
-        Billet n° {{ loop.index }}
+        <div id="ticketNumber">Billet n° {{ loop.index }}</div>
         {{ form_errors(ticket) }}
         {{ form_widget(ticket) }}
     {% endfor %}

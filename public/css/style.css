@@ -153,10 +153,14 @@ form label {
     text-align: center;
 }
 
+.form-group {
+    border : none;
+}
+
 /*------------------------------------------ Tickets  ------------------------------------------*/
 
-#booking_tickets_tickets > div {
-    border: 2px solid black;
+form > div {
+    border: 2px solid white;
     margin-top: 2%;
     margin-bottom: 2%;
 }
@@ -170,6 +174,14 @@ form label {
     justify-content: center;
 }
 
+
+#ticketNumber {
+    margin-top: 10%;
+    border-top: 3px double white;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
 
 /*------------------------------------------ Summary  ------------------------------------------*/
 

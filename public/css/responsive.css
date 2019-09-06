@@ -48,3 +48,14 @@
     }
 
 }
+@media all and (max-width: 900px) {
+
+    #pricesandschedules {
+        flex-direction: column;
+    }
+
+    form {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
