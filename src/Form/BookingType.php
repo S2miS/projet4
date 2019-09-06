@@ -19,17 +19,14 @@ class BookingType extends AbstractType
     {
         $builder
             ->add('visitDay', DateType::class, [
-                'widget'=>'single_text',
-                'format'=>'dd-MM-yyyy',
-                'attr'=>['class'=>'js-datepicker'],
-                'html5'=>false,
-                'model_timezone'=>'Europe/Paris'
+                //'format'=>'dd-MM-yyyy',
+                'widget' => 'single_text'
             ])
             ->add('email', EmailType::class)
             ->add('orderType', ChoiceType::class, [
                 'choices'=> [
-                    'Journée'=>true,
-                    'Demi-journée'=>false
+                    'Journée'=>Booking::TYPE_FULL_DAY,
+                    'Demi-journée'=>Booking::TYPE_HALF_DAY
                 ],
                 'multiple'=>false
             ])

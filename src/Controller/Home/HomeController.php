@@ -9,6 +9,7 @@
 namespace App\Controller\Home;
 
 
+use App\Repository\PriceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +18,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="homepage", methods={"GET"})
      */
-    public function home(){
-        return $this->render('homepage.html.twig');
+    public function home(PriceRepository $priceRepository){
+        $prices= $priceRepository->findOneById(1);
+        return $this->render('homepage.html.twig', [
+            'prices'=> $prices
+        ]);
     }
 }

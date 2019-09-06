@@ -33,27 +33,29 @@ class Ticket
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime(message="Veuillez renseigner votre date de naissance")
      */
     private $birthday;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Country(message="Veuillez renseigner votre pays")
      */
     private $country;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $discount;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $ticketPrice;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Booking", inversedBy="tickets")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $booking;
 

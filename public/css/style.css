@@ -1,8 +1,200 @@
 h1 {
     font-family: 'Lora', serif;
+    color: white;
+
 }
 
 body {
     font-family: 'Merriweather Sans', sans-serif;
-    background-color: red;
+    background-color: #331107 !important;
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/*------------------------------------------ Footer ------------------------------------------*/
+
+Footer {
+    margin-top: 10%;
+    padding: 2%;
+    display: flex !important;
+    justify-content: space-evenly;
+    background-color: black;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+Footer a {
+    text-decoration: none;
+    color: white;
+}
+
+Footer a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+/*------------------------------------------ Homepage ------------------------------------------*/
+
+.home-section {
+    background-image: url("../images/louvrehome.jpg");
+}
+
+.home-section h1{
+    font-size: 4em;
+}
+
+.container-fluid {
+    text-align: center;
+}
+
+#homepage-container {
+    padding: 0 !important;
+}
+
+.container-fluid .home-section {
+    padding-top: 5%;
+    text-align: center;
+}
+
+.btn-order {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding-right: 1%;
+    padding-left: 1%;
+    text-transform: uppercase;
+    border: 1px solid white;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 1);
+    transition: 0.5s;
+}
+
+.btn-order:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: black;
+    border: 1px solid black;
+}
+
+.btn-order a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.btn-order a {
+    color: black;
+    font-size: 1.8em;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-decoration: none;
+}
+
+.schedules-table {
+    padding-bottom: 5%;
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.section-prices-container {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+#pricesandschedules {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2%;
+    background-color: #222222;
+    color:white;
+}
+
+/*------------------------------------------ Form ------------------------------------------*/
+
+form {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-left: 40%;
+    padding-right: 40%;
+    margin-top: 3%;
+    background-color: #222222;
+
+}
+
+form div {
+    padding: 2%;
+}
+
+form div label {
+    padding-right: 2%;
+}
+
+/*------------------------------------------ Booking ------------------------------------------*/
+
+#bookingTitle {
+    text-align: center;
+}
+
+#tickets {
+    text-align: center;
+}
+
+/*------------------------------------------ Tickets  ------------------------------------------*/
+
+#ticketsForm form > div {
+    border: 2px solid black;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#ticketSubmit {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+
+/*------------------------------------------ Summary  ------------------------------------------*/
+
+#resumepage {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-left: 30%;
+    padding-right: 30%;
+    margin-top: 3%;
+    background-color: #222222;
+}
+
+#resumepage h2 {
+    padding-bottom: 5%;
+}
+
+
+#totalPrice {
+    margin-top: 5%;
+}
+
+#resInfo {
+    padding-top: 5%;
+}
+
+/*------------------------------------------ Validation  ------------------------------------------*/
+
+#validation {
+    color: white;
+    background-color: #222222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }

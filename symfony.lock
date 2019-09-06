@@ -108,9 +108,6 @@
     "egulias/email-validator": {
         "version": "2.1.8"
     },
-    "facebook/webdriver": {
-        "version": "1.6.0"
-    },
     "fig/link-util": {
         "version": "1.0.0"
     },
@@ -147,6 +144,12 @@
     "psr/log": {
         "version": "1.1.0"
     },
+    "ramsey/uuid": {
+        "version": "3.8.0"
+    },
+    "sebastian/type": {
+        "version": "1.1.3"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -158,6 +161,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "stripe/stripe-php": {
+        "version": "v6.40.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.1"
@@ -178,7 +184,7 @@
         "version": "v4.3.0"
     },
     "symfony/browser-kit": {
-        "version": "v4.3.0"
+        "version": "v4.3.3"
     },
     "symfony/cache": {
         "version": "v4.3.0"
@@ -203,7 +209,7 @@
         ]
     },
     "symfony/css-selector": {
-        "version": "v4.3.0"
+        "version": "v4.3.3"
     },
     "symfony/debug": {
         "version": "v4.3.0"
@@ -230,7 +236,7 @@
         "version": "v4.3.0"
     },
     "symfony/dom-crawler": {
-        "version": "v4.3.0"
+        "version": "v4.3.3"
     },
     "symfony/dotenv": {
         "version": "v4.3.0"
@@ -337,16 +343,13 @@
     "symfony/orm-pack": {
         "version": "v1.0.6"
     },
-    "symfony/panther": {
-        "version": "v0.3.0"
-    },
     "symfony/phpunit-bridge": {
         "version": "4.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "4.3",
-            "ref": "04ecbfb3121b7418265aee7b1b2151959ba430b9"
+            "ref": "b0582341f1df39aaf3a9a866cdbe49937da35984"
         },
         "files": [
             "./.env.test",
@@ -449,7 +452,7 @@
         ]
     },
     "symfony/test-pack": {
-        "version": "v1.0.5"
+        "version": "v1.0.6"
     },
     "symfony/translation": {
         "version": "3.3",

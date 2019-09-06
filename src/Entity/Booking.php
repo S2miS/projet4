@@ -5,13 +5,22 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator as AcmeAssert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
+ * @AcmeAssert\TicketLimit()
+ * @AcmeAssert\NotAfter14H()
+ *
  */
 class Booking
 {
+    const MAX_TICKET_PER_DAY = 1000;
+    const TYPE_FULL_DAY = true;
+    const TYPE_HALF_DAY = false;
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -25,8 +34,15 @@ class Booking
     private $orderDate;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @Assert\GreaterThanOrEqual("today", message="Impossible de sélectionner un jour passé")
+     * @Assert\Date(message="Test")
+     * @AcmeAssert\Not01May
+     * @AcmeAssert\Not01Nov
+     * @AcmeAssert\Not25Dec
+     * @AcmeAssert\NotTuesday
+     * @AcmeAssert\NotSunday
+     * @AcmeAssert\NotHoliday
      */
     private $visitDay;
 
@@ -40,7 +56,7 @@ class Booking
     /**
      * @ORM\Column(type="boolean")
      */
-    private $orderType;
+    private $orderType = true;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -58,13 +74,13 @@ class Booking
     private $orderNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="booking")
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="booking", cascade={"persist", "remove"})
      */
     private $tickets;
 
     public function __construct()
     {
-        $this->orderDate=new \DateTime();
+        $this->orderDate = new \DateTime();
         $this->tickets = new ArrayCollection();
     }
 
@@ -85,12 +101,12 @@ class Booking
         return $this;
     }
 
-    public function getVisitDay(): ?\DateTimeInterface
+    public function getVisitDay()
     {
         return $this->visitDay;
     }
 
-    public function setVisitDay(\DateTimeInterface $visitDay): self
+    public function setVisitDay($visitDay): self
     {
         $this->visitDay = $visitDay;
 
@@ -126,9 +142,16 @@ class Booking
         return $this->orderPrice;
     }
 
-    public function setOrderPrice(?int $orderPrice): self
+    public function setOrderPrice(?int $price): self
     {
-        $this->orderPrice = $orderPrice;
+        $this->orderPrice = $price;
+
+        return $this;
+    }
+
+    public function incrementOrderPrice(?int $ticketPrice): self
+    {
+        $this->orderPrice += $ticketPrice;
 
         return $this;
     }

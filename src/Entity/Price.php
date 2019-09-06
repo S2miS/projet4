@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Price
 {
+    const REDUCE_COEEF = 0.5;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

@@ -1,4 +1,5 @@
 <!-- Horaires -->
+<div id="pricesandschedules">
 <section id="schedules" class="section-content section-schedules">
     <div class="section-schedules-header">
         <h2>Horaires : </h2>
@@ -67,9 +68,9 @@
         <div class="prices-section-content col-lg-2 col-md-6 col-sm-6 col-xs-10">
             <div class="prices-content">
                 <div class="prices-content-body">
-                    <p>Enfant de moins de 4ans
+                    <p>Enfant de moins de 4 ans
                         <br>
-                        <span class="prices"> Gratuit</span>
+                        <span class="prices">Gratuit</span>
                     </p>
                 </div>
             </div>
@@ -80,29 +81,29 @@
                 <div class="prices-content-body">
                     <p>
                         <br>
-                        <span class="prices">8€</span>
+                        <span class="prices">{{ prices.child }}€</span>
                     </p>
                 </div>
             </div>
         </div>
         <div class="prices-section-content col-lg-2 col-md-6 col-sm-6 col-xs-10">
             <div class="prices-content">
-                <div class="prices-content-header">Normal (à partir de 12ans)</div>
+                <div class="prices-content-header">Normal (à partir de 12 ans)</div>
                 <div class="prices-content-body">
                     <p>
                         <br>
-                        <span class="prices">16€</span>
+                        <span class="prices">{{ prices.normal }}€</span>
                     </p>
                 </div>
             </div>
         </div>
         <div class="prices-section-content col-lg-2 col-md-6 col-sm-6 col-xs-10">
             <div class="prices-content">
-                <div class="prices-content-header">Senior (à partir de 60ans)</div>
+                <div class="prices-content-header">Senior (à partir de 60 ans)</div>
                 <div class="prices-content-body">
                     <p>
                         <br>
-                        <span class="prices">12€</span>
+                        <span class="prices">{{ prices.senior }}€</span>
                     </p>
                 </div>
             </div>
@@ -113,7 +114,7 @@
                 <div class="prices-content-body">
                     <p class="reduit">
                         <br>
-                        <span class="prices">10€</span>
+                        <span class="prices">{{ prices.discount }}€</span>
                     </p>
                 </div>
             </div>
@@ -124,5 +125,6 @@
     <div class="row">
 
     </div>
-    <p class="condition col-12">Il vous sera demmandé un justificatif à l'entrée musée pour bénéficier d'un tarif réduit.</p>
+    <p class="condition col-12">Il vous sera demandé un justificatif à l'entrée musée pour bénéficier d'un tarif réduit.</p>
 </section>
+</div>
