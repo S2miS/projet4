@@ -10,16 +10,12 @@
 {{ form_start(form) }}
     {{ form_label(form.visitDay, 'Date de la visite') }}
     {{ form_widget(form.visitDay) }}
-    {{ form_errors(form.visitDay) }}
     {{ form_label(form.email, 'Email') }}
     {{ form_widget(form.email) }}
-    {{ form_errors(form.email) }}
     {{ form_label(form.orderType, 'Type de billet') }}
     {{ form_widget(form.orderType) }}
-    {{ form_errors(form.orderType) }}
     {{ form_label(form.ticketNumber, 'Nombre de ticket') }}
     {{ form_widget(form.ticketNumber) }}
-    {{ form_errors(form.ticketNumber) }}
 {{ form_end(form) }}
 
 {% endblock %}
