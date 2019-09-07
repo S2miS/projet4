@@ -40,6 +40,7 @@ class TicketLimitValidator extends ConstraintValidator
         {
             $this->context
                 ->buildViolation($constraint->messageMaxTicket)
+                ->atPath('ticketNumber')
                 ->addViolation();
         }
     }
