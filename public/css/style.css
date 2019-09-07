@@ -133,6 +133,11 @@ form div label {
     margin-top: 2%;
 }
 
+.form-inline {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 /*------------------------------------------ Booking ------------------------------------------*/
 
 #bookingTitle {
