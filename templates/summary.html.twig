@@ -3,7 +3,7 @@
     <div id="resumepage">
     <h2 id="titreRecap">Résumé de votre commande</h2>
         <div id="resBooking">
-            <p>Jours de la visite : {{ booking.visitDay|date('d-m-y') }} </p>
+            <p>Jour de la visite : {{ booking.visitDay|date('d-m-y') }} </p>
             <p>Type de billet :
                 {% if booking.orderType == true %}
                     Journée entière
@@ -11,7 +11,7 @@
                     Demi-journée
                 {% endif %}
             </p>
-            <p>Nombre de billets : {{ booking.ticketNumber }} </p>
+            <p>Nombre de billet(s) : {{ booking.ticketNumber }} </p>
         </div>
 
         <table class="table table-responsive text-white" id="resInfo">
